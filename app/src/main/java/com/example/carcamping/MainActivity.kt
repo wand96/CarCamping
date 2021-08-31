@@ -14,17 +14,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        initUi()
+    }
+
+    private fun initUi() {
         val list = listOf(MapFragment(), BookMarkFragment(), SnapFragment())
 
         val pagerAdapter = FragmentPagerAdapter(list, this)
-
-        binding.viewPager.adapter = pagerAdapter
-
         val titles = listOf("Map", "BookMark", "Snap")
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = titles[position]
-        }.attach()
+        with(binding) {
+            viewPager.adapter = pagerAdapter
+
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                tab.text = titles[position]
+            }.attach()
+        }
     }
 }
 
