@@ -9,7 +9,7 @@ import com.example.carcamping.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
-    val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,12 +23,12 @@ class MainActivity : AppCompatActivity() {
         val titles = listOf("Map", "BookMark", "Snap")
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab, position ->
-            tab.text = titles.get(position)
+            tab.text = titles[position]
         }.attach()
     }
 }
 
-class FragmentPagerAdapter(val fragmentList:List<Fragment>, fragmentActivity: FragmentActivity):
+class FragmentPagerAdapter(private val fragmentList:List<Fragment>, fragmentActivity: FragmentActivity):
                                                         FragmentStateAdapter(fragmentActivity){
     override fun getItemCount() = fragmentList.size
     override fun createFragment(position: Int) = fragmentList.get(position)
