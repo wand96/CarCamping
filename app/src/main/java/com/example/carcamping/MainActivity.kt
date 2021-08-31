@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val list = listOf(Fragment_map(), Fragment_BookMark(), Fragment_Snap())
+        val list = listOf(MapFragment(), BookMarkFragment(), SnapFragment())
 
         val pagerAdapter = FragmentPagerAdapter(list, this)
 
