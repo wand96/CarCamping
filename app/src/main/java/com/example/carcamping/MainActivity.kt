@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
         val list = listOf(MapFragment(), BookMarkFragment(), SnapFragment())
 
@@ -22,14 +22,17 @@ class MainActivity : AppCompatActivity() {
 
         val titles = listOf("Map", "BookMark", "Snap")
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab, position ->
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = titles[position]
         }.attach()
     }
 }
 
-class FragmentPagerAdapter(private val fragmentList:List<Fragment>, fragmentActivity: FragmentActivity):
-                                                        FragmentStateAdapter(fragmentActivity){
+class FragmentPagerAdapter(
+    private val fragmentList: List<Fragment>,
+    fragmentActivity: FragmentActivity
+) :
+    FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount() = fragmentList.size
     override fun createFragment(position: Int) = fragmentList.get(position)
 
