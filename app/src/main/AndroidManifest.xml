@@ -11,7 +11,8 @@
         android:theme="@style/Theme.CarCamping">
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/SplashScreen">
+            android:theme="@style/SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
