@@ -7,20 +7,18 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.carcamping.R
 import com.example.carcamping.ui.HomeActivity
 
-class SplashActivity: AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
         var handler = Handler()
-        handler.postDelayed( {
-            var intent = Intent(this, HomeActivity::class.java)
+        handler.postDelayed({
+            var intent = Intent(this, HomeActivity::class.java).addFlags(
+                Intent.FLAG_ACTIVITY_CLEAR_TASK
+            )
             startActivity(intent)
         }, 1500)
     }
 
-    override fun onPause() {
-        super.onPause()
-        finish()
-    }
 }
