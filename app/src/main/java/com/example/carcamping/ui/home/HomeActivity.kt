@@ -1,4 +1,4 @@
-package com.example.carcamping
+package com.example.carcamping.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
