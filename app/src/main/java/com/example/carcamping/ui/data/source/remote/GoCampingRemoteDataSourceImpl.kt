@@ -1,4 +1,30 @@
 package com.example.carcamping.ui.data.source.remote
 
-class GoCampingRemoteDataSourceImpl : GoCampingRemoteDataSource {
+import com.example.carcamping.ui.api.GoCampingApi
+import com.example.carcamping.ui.api.response.GoCampingResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class GoCampingRemoteDataSourceImpl(private val goCampingApi: GoCampingApi) :
+    GoCampingRemoteDataSource {
+
+    override fun getBasedList(
+        onSuccess: (goCampingResponse: GoCampingResponse) -> Unit,
+        onFailure: (throwable: Throwable) -> Unit
+    ) {
+        goCampingApi.getBasedList().enqueue(object : Callback<GoCampingResponse> {
+            override fun onResponse(
+                call: Call<GoCampingResponse>,
+                response: Response<GoCampingResponse>
+            ) {
+                response.body()?.let(onSuccess)
+            }
+
+            override fun onFailure(call: Call<GoCampingResponse>, t: Throwable) {
+                onFailure(t)
+            }
+        })
+    }
+
 }
