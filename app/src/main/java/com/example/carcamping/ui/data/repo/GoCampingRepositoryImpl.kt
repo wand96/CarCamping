@@ -12,4 +12,17 @@ class GoCampingRepositoryImpl(private val goCampingRemoteDataSource: GoCampingRe
     ) {
         goCampingRemoteDataSource.getBasedList(onSuccess, onFailure)
     }
+
+
+    companion object {
+
+        private var instance: GoCampingRepositoryImpl? = null
+
+        fun getInstance(goCampingRemoteDataSource: GoCampingRemoteDataSource): GoCampingRepository =
+            instance ?: GoCampingRepositoryImpl(goCampingRemoteDataSource).also {
+                instance = it
+            }
+
+    }
+
 }

@@ -25,8 +25,8 @@ class HomeActivity : AppCompatActivity() {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
                     return HomeViewModel(
-                        GoCampingRepositoryImpl(
-                            GoCampingRemoteDataSourceImpl(
+                        GoCampingRepositoryImpl.getInstance(
+                            GoCampingRemoteDataSourceImpl.getInstance(
                                 GoCampingRetrofit.create()
                             )
                         )

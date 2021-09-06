@@ -27,4 +27,15 @@ class GoCampingRemoteDataSourceImpl(private val goCampingApi: GoCampingApi) :
         })
     }
 
+    companion object {
+
+        private var instance: GoCampingRemoteDataSourceImpl? = null
+
+        fun getInstance(goCampingApi: GoCampingApi): GoCampingRemoteDataSource =
+            instance ?: GoCampingRemoteDataSourceImpl(goCampingApi).also {
+                instance = it
+            }
+
+    }
+
 }
