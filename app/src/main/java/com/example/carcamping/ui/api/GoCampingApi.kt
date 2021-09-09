@@ -15,17 +15,15 @@ interface GoCampingApi {
 
         private const val MOBILE_APP = "CarCamping"
 
-        private const val BASEDLIST_URL = "basedList"
+        private const val BASEDLIST_URL =
+            "basedList?ServiceKey=$GO_CAMPING_KEY&MobileOS=$MOBILE_OS&MobileApp=$MOBILE_APP"
 
         private const val TYPE_JSON = "json"
     }
 
     @GET(BASEDLIST_URL)
     fun getBasedList(
-        @Query("ServiceKey") serviceKey: String = GO_CAMPING_KEY,
-        @Query("MobileOS") mobileOS: String = MOBILE_OS,
-        @Query("MobileApp") MobileApp: String = MOBILE_APP,
-        @Query("_type") _type: String = TYPE_JSON
+        @Query(value = "_type") type: String = TYPE_JSON
     ): Call<GoCampingResponse>
 
 }
