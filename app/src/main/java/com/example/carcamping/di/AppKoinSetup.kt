@@ -1,6 +1,8 @@
 package com.example.carcamping.di
 
 import com.example.carcamping.api.GoCampingApi
+import com.example.carcamping.data.repo.GoCampingRepository
+import com.example.carcamping.data.repo.GoCampingRepositoryImpl
 import com.example.carcamping.data.source.remote.GoCampingRemoteDataSource
 import com.example.carcamping.data.source.remote.GoCampingRemoteDataSourceImpl
 import org.koin.core.module.Module
@@ -21,11 +23,11 @@ class AppKoinSetup : KoinBaseKoinSetup() {
     }
 
     private val repositoryModule = module {
-
+        single<GoCampingRepository> {  GoCampingRepositoryImpl() }
     }
 
     private val sourceModule = module {
-        single<GoCampingRemoteDataSource> { GoCampingRemoteDataSourceImpl(get()) }
+        single<GoCampingRemoteDataSource> { GoCampingRemoteDataSourceImpl() }
     }
 
     private val apiModule = module {
