@@ -1,6 +1,6 @@
 package com.example.carcamping.data.source.remote
 
-import com.example.carcamping.ui.api.response.GoCampingResponse
+import com.example.carcamping.api.response.GoCampingResponse
 
 interface GoCampingRemoteDataSource {
 
