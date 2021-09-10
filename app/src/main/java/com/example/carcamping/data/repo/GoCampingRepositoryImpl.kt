@@ -7,7 +7,7 @@ import org.koin.java.KoinJavaComponent.inject
 class GoCampingRepositoryImpl :
     GoCampingRepository {
 
-    private val goCampingRemoteDataSource by inject<GoCampingRemoteDataSource>(GoCampingRepository::class.java)
+    private val goCampingRemoteDataSource by inject<GoCampingRemoteDataSource>(GoCampingRemoteDataSource::class.java)
 
     override fun getBasedList(
         onSuccess: (goCampingResponse: GoCampingResponse) -> Unit,
