@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.carcamping.databinding.ActivityHomeBinding
-import com.example.carcamping.api.GoCampingRetrofit
 import com.example.carcamping.data.repo.GoCampingRepositoryImpl
 import com.example.carcamping.data.source.remote.GoCampingRemoteDataSourceImpl
 import com.example.carcamping.viewmodel.HomeViewModel

@@ -2,12 +2,15 @@ package com.example.carcamping.data.source.remote
 
 import com.example.carcamping.api.GoCampingApi
 import com.example.carcamping.api.response.GoCampingResponse
+import org.koin.java.KoinJavaComponent.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class GoCampingRemoteDataSourceImpl(private val goCampingApi: GoCampingApi) :
+class GoCampingRemoteDataSourceImpl :
     GoCampingRemoteDataSource {
+
+    private val goCampingApi by inject<GoCampingApi>(GoCampingApi::class.java)
 
     override fun getBasedList(
         onSuccess: (goCampingResponse: GoCampingResponse) -> Unit,
@@ -26,16 +29,4 @@ class GoCampingRemoteDataSourceImpl(private val goCampingApi: GoCampingApi) :
             }
         })
     }
-
-    companion object {
-
-        private var instance: GoCampingRemoteDataSourceImpl? = null
-
-        fun getInstance(goCampingApi: GoCampingApi): GoCampingRemoteDataSource =
-            instance ?: GoCampingRemoteDataSourceImpl(goCampingApi).also {
-                instance = it
-            }
-
-    }
-
 }
