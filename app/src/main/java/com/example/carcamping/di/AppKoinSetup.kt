@@ -5,6 +5,8 @@ import com.example.carcamping.data.repo.GoCampingRepository
 import com.example.carcamping.data.repo.GoCampingRepositoryImpl
 import com.example.carcamping.data.source.remote.GoCampingRemoteDataSource
 import com.example.carcamping.data.source.remote.GoCampingRemoteDataSourceImpl
+import com.example.carcamping.viewmodel.HomeViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -12,18 +14,18 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class AppKoinSetup : KoinBaseKoinSetup() {
 
-    companion object{
+    companion object {
         private const val GO_CAMPING_BASE_URL =
             "http://api.visitkorea.or.kr/openapi/service/rest/GoCamping/"
 
     }
 
     private val viewModelModule = module {
-
+        viewModel { HomeViewModel() }
     }
 
     private val repositoryModule = module {
-        single<GoCampingRepository> {  GoCampingRepositoryImpl() }
+        single<GoCampingRepository> { GoCampingRepositoryImpl() }
     }
 
     private val sourceModule = module {
@@ -31,11 +33,13 @@ class AppKoinSetup : KoinBaseKoinSetup() {
     }
 
     private val apiModule = module {
-        single<GoCampingApi> { Retrofit.Builder()
-            .baseUrl(GO_CAMPING_BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(GoCampingApi::class.java) }
+        single<GoCampingApi> {
+            Retrofit.Builder()
+                .baseUrl(GO_CAMPING_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+                .create(GoCampingApi::class.java)
+        }
     }
 
 

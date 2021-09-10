@@ -1,40 +1,20 @@
 package com.example.carcamping.ui.home
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.carcamping.databinding.ActivityHomeBinding
-import com.example.carcamping.data.repo.GoCampingRepositoryImpl
-import com.example.carcamping.data.source.remote.GoCampingRemoteDataSourceImpl
 import com.example.carcamping.viewmodel.HomeViewModel
 import com.google.android.material.tabs.TabLayoutMediator
-import java.lang.IllegalArgumentException
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
     private val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
 
-    private val homeViewModel by lazy {
-
-        ViewModelProvider(this, object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {
-                    return HomeViewModel(
-                        GoCampingRepositoryImpl.getInstance(
-                            GoCampingRemoteDataSourceImpl.getInstance(
-                                GoCampingRetrofit.create()
-                            )
-                        )
-                    ) as T
-                } else throw IllegalArgumentException()
-            }
-        }).get(HomeViewModel::class.java)
-
-    }
+    private val homeViewModel by viewModel<HomeViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
