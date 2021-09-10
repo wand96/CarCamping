@@ -1,4 +1,4 @@
-package com.example.carcamping.ui.api.response
+package com.example.carcamping.api.response
 
 data class GoCampingResponse(
     val response: Response

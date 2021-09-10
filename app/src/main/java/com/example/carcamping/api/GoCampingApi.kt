@@ -1,6 +1,6 @@
-package com.example.carcamping.ui.api
+package com.example.carcamping.api
 
-import com.example.carcamping.ui.api.response.GoCampingResponse
+import com.example.carcamping.api.response.GoCampingResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,6 +1,6 @@
-package com.example.carcamping.ui.data.repo
+package com.example.carcamping.data.repo
 
-import com.example.carcamping.ui.api.response.GoCampingResponse
+import com.example.carcamping.api.response.GoCampingResponse
 
 interface GoCampingRepository {
 

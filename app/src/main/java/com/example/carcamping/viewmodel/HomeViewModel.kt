@@ -1,13 +1,16 @@
-package com.example.carcamping.ui.viewmodel
+package com.example.carcamping.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.carcamping.ui.data.model.GoCampingItem
-import com.example.carcamping.ui.data.repo.GoCampingRepository
+import com.example.carcamping.data.model.GoCampingItem
+import com.example.carcamping.data.repo.GoCampingRepository
+import org.koin.java.KoinJavaComponent.inject
 
-class HomeViewModel(private val goCampingRepository: GoCampingRepository) : ViewModel() {
+class HomeViewModel : ViewModel() {
+
+    private val goCampingRepository by inject<GoCampingRepository>(GoCampingRepository::class.java)
 
     private val _homeViewStateLiveData = MutableLiveData<HomeViewState>()
     val homeViewStateLiveData: LiveData<HomeViewState> = _homeViewStateLiveData
