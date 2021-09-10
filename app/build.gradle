@@ -53,8 +53,17 @@ dependencies {
 
     // Add Maven Central to your repositories if needed
 
-    // Koin for Kotlin apps
-    implementation 'io.insert-koin:koin-core:3.1.2'
-    // Testing
-    testImplementation 'io.insert-koin:koin-test:3.1.2'
+}
+//Koin
+dependencies {
+    ext.koin_version = "3.1.2"
+
+    // Koin core features
+    implementation "io.insert-koin:koin-core:$koin_version"
+    // Koin test features
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    // Koin for JUnit 4
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
+    // Koin main features for Android (Scope,ViewModel ...)
+    implementation "io.insert-koin:koin-android:$koin_version"
 }
