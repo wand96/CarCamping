@@ -1,7 +1,7 @@
-package com.example.carcamping.ui.data.repo
+package com.example.carcamping.data.repo
 
 import com.example.carcamping.ui.api.response.GoCampingResponse
-import com.example.carcamping.ui.data.source.remote.GoCampingRemoteDataSource
+import com.example.carcamping.data.source.remote.GoCampingRemoteDataSource
 
 class GoCampingRepositoryImpl(private val goCampingRemoteDataSource: GoCampingRemoteDataSource) :
     GoCampingRepository {

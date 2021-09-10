@@ -1,11 +1,11 @@
-package com.example.carcamping.ui.viewmodel
+package com.example.carcamping.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.carcamping.ui.data.model.GoCampingItem
-import com.example.carcamping.ui.data.repo.GoCampingRepository
+import com.example.carcamping.data.model.GoCampingItem
+import com.example.carcamping.data.repo.GoCampingRepository
 
 class HomeViewModel(private val goCampingRepository: GoCampingRepository) : ViewModel() {
 

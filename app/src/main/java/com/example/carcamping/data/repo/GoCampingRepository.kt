@@ -1,12 +1,11 @@
-package com.example.carcamping.ui.data.source.remote
+package com.example.carcamping.data.repo
 
 import com.example.carcamping.ui.api.response.GoCampingResponse
 
-interface GoCampingRemoteDataSource {
+interface GoCampingRepository {
 
     fun getBasedList(
         onSuccess: (goCampingResponse: GoCampingResponse) -> Unit,
         onFailure: (throwable: Throwable) -> Unit
     )
-
 }

@@ -1,7 +1,7 @@
-package com.example.carcamping.ui.data.source.remote
+package com.example.carcamping.data.source.remote
 
-import com.example.carcamping.ui.api.GoCampingApi
-import com.example.carcamping.ui.api.response.GoCampingResponse
+import com.example.carcamping.api.GoCampingApi
+import com.example.carcamping.api.response.GoCampingResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

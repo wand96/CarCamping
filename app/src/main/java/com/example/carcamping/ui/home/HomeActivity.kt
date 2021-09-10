@@ -9,10 +9,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.carcamping.databinding.ActivityHomeBinding
-import com.example.carcamping.ui.api.GoCampingRetrofit
-import com.example.carcamping.ui.data.repo.GoCampingRepositoryImpl
-import com.example.carcamping.ui.data.source.remote.GoCampingRemoteDataSourceImpl
-import com.example.carcamping.ui.viewmodel.HomeViewModel
+import com.example.carcamping.api.GoCampingRetrofit
+import com.example.carcamping.data.repo.GoCampingRepositoryImpl
+import com.example.carcamping.data.source.remote.GoCampingRemoteDataSourceImpl
+import com.example.carcamping.viewmodel.HomeViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import java.lang.IllegalArgumentException
 

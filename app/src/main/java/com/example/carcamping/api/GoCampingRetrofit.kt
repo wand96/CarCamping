@@ -1,4 +1,4 @@
-package com.example.carcamping.ui.api
+package com.example.carcamping.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
