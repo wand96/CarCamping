@@ -4,6 +4,8 @@
     package="com.example.carcamping">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <meta-data android:name="com.kakao.sdk.AppKey" android:value="71c1daaace449f1d1ff6c8dcbefe0484"/>
 
     <application
         android:allowBackup="true"
