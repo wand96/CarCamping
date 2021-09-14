@@ -9,6 +9,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Base64
 import android.util.Log
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.carcamping.R
 import com.example.carcamping.ui.home.HomeActivity
@@ -19,6 +20,11 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        var actionBar : ActionBar?
+
+        actionBar = supportActionBar;
+        actionBar?.hide()
 
         routeHomeActivity()
     }
