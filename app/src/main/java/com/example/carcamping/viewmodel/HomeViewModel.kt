@@ -21,11 +21,24 @@ class HomeViewModel : ViewModel() {
         goCampingRepository.getBasedList(
             onSuccess = {
                 Log.d("결과-success", it.response.header.resultCode)
-                Log.d("결과-success", it.response.body.items.item.size.toString())
+                Log.d("결과-success", it.response.body.basedListItems.item.size.toString())
             }, onFailure = {
                 Log.d("결과-failure", it.message!!)
             }
         )
+    }
+
+    fun getGoCampingLocationList(mapX: Double, mapY: Double, radius: Int) {
+        goCampingRepository.getLocationList(mapX, mapY, radius,
+            onSuccess = {
+                Log.d("결과성공-code", it.response.header.resultCode)
+                Log.d("결과성공-addr1", it.response.body.items.item[0].addr1)
+                Log.d("결과성공-addr2", it.response.body.items.item[0].addr2 ?: "null")
+                Log.d("결과성공-facltNm", it.response.body.items.item[0].facltNm ?: "")
+            }, onFailure = {
+
+            })
+
     }
 
 
