@@ -42,4 +42,10 @@ interface GoCampingApi {
     ): Call<LocationBasedListResponse>
 
 
+    @GET(SEARCHLIST_URL)
+    fun getSearchList(
+        @Query(value = "keyword") keyword : String,
+        @Query(value = "_type") type: String = TYPE_JSON
+    ) : Call<SearchListResponse>
+
 }

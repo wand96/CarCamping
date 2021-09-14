@@ -7,6 +7,7 @@ import org.koin.java.KoinJavaComponent.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.net.URLEncoder
 
 class GoCampingRemoteDataSourceImpl :
     GoCampingRemoteDataSource {
@@ -51,5 +52,27 @@ class GoCampingRemoteDataSourceImpl :
                     onFailure(t)
                 }
             })
+    }
+
+    override fun getSearchList(
+        keyword: String,
+        onSuccess: (SearchListResponse) -> Unit,
+        onFailure: (throwable: Throwable) -> Unit
+    ) {
+
+        val toEncodingKeyword = URLEncoder.encode(keyword,"UTF-8")
+
+        goCampingApi.getSearchList(toEncodingKeyword).enqueue(object : Callback<SearchListResponse> {
+            override fun onResponse(
+                call: Call<SearchListResponse>,
+                response: Response<SearchListResponse>
+            ) {
+                response.body()?.let(onSuccess)
+            }
+
+            override fun onFailure(call: Call<SearchListResponse>, t: Throwable) {
+                onFailure(t)
+            }
+        }
     }
 }

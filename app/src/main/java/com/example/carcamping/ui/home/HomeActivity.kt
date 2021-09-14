@@ -27,6 +27,8 @@ class HomeActivity : AppCompatActivity() {
 //        homeViewModel.getGoCampingBasedList()
 
         homeViewModel.getGoCampingLocationList(128.6142847, 36.0345423, 2000)
+
+        homeViewModel.getSearchList("오토캠핑장")
     }
 
     private fun initUi() {

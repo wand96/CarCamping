@@ -26,4 +26,12 @@ class GoCampingRepositoryImpl :
     ) {
         goCampingRemoteDataSource.getLocationList(mapX, mapY, radius, onSuccess, onFailure)
     }
+
+    override fun getSearchList(
+        keyword: String,
+        onSuccess: (SearchListResponse) -> Unit,
+        onFailure: (throwable: Throwable) -> Unit
+    ) {
+        goCampingRemoteDataSource.getSearchList(keyword, onSuccess, onFailure)
+    }
 }

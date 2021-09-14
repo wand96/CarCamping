@@ -41,6 +41,12 @@ class HomeViewModel : ViewModel() {
 
     }
 
+    fun getSearchList(keyword : String) {
+
+        goCampingRepository.getSearchList(keyword,onSuccess = {},onFailure = {})
+
+    }
+
 
     sealed class HomeViewState {
         data class GetGoCampingBasedList(val goCampingItem: GoCampingItem) : HomeViewState()

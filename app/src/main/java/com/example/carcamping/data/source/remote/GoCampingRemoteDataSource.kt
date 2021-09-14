@@ -18,4 +18,10 @@ interface GoCampingRemoteDataSource {
         onFailure: (throwable: Throwable) -> Unit
     )
 
+    fun getSearchList(
+        keyword : String,
+        onSuccess: (searchListResponse: SearchListResponse) -> Unit,
+        onFailure: (throwable: Throwable) -> Unit
+    )
+
 }
