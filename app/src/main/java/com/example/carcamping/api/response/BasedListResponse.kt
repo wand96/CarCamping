@@ -1,33 +1,27 @@
 package com.example.carcamping.api.response
 
-data class GoCampingResponse(
-    val response: Response
+data class BasedListResponse(
+    val response: BasedResponse
 )
 
-data class Response(
-    val body: Body,
+data class BasedResponse(
+    val body: BasedBody,
     val header: Header
 )
 
-
-data class Header(
-    val resultCode: String,
-    val resultMsg: String
-)
-
-data class Body(
-    val items: Items,
+data class BasedBody(
+    val basedListItems: BasedListItems,
     val numOfRows: Int,
     val pageNo: Int,
     val totalCount: Int
 )
 
-data class Items(
-    val item: List<Item>
+data class BasedListItems(
+    val item: List<BasedListItem>
 )
 
 
-data class Item(
+data class BasedListItem(
     val addr1: String,
     val allar: Int,
     val animalCmgCl: String,
