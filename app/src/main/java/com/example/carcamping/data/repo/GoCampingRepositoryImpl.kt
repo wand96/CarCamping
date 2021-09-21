@@ -2,13 +2,16 @@ package com.example.carcamping.data.repo
 
 import com.example.carcamping.api.response.BasedListResponse
 import com.example.carcamping.api.response.LocationBasedListResponse
+import com.example.carcamping.api.response.SearchListResponse
 import com.example.carcamping.data.source.remote.GoCampingRemoteDataSource
 import org.koin.java.KoinJavaComponent.inject
 
 class GoCampingRepositoryImpl :
     GoCampingRepository {
 
-    private val goCampingRemoteDataSource by inject<GoCampingRemoteDataSource>(GoCampingRemoteDataSource::class.java)
+    private val goCampingRemoteDataSource by inject<GoCampingRemoteDataSource>(
+        GoCampingRemoteDataSource::class.java
+    )
 
     override fun getBasedList(
         onSuccess: (basedListResponse: BasedListResponse) -> Unit,
@@ -29,7 +32,7 @@ class GoCampingRepositoryImpl :
 
     override fun getSearchList(
         keyword: String,
-        onSuccess: (SearchListResponse) -> Unit,
+        onSuccess: (searchListResponse: SearchListResponse) -> Unit,
         onFailure: (throwable: Throwable) -> Unit
     ) {
         goCampingRemoteDataSource.getSearchList(keyword, onSuccess, onFailure)

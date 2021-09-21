@@ -1,6 +1,27 @@
 package com.example.carcamping.api.response
 
-data class Item(
+data class SearchListResponse(
+    val response: SearchResponse
+)
+
+data class SearchResponse(
+    val body: SearchBody,
+    val header: Header
+)
+
+data class SearchBody(
+    val items: SearchItems,
+    val numOfRows: Int,
+    val pageNo: Int,
+    val totalCount: Int
+)
+
+
+data class SearchItems(
+    val item: List<SearchItem>
+)
+
+data class SearchItem(
     val addr1: String,
     val allar: Int,
     val animalCmgCl: String,

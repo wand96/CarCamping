@@ -3,6 +3,7 @@ package com.example.carcamping.data.source.remote
 import com.example.carcamping.api.GoCampingApi
 import com.example.carcamping.api.response.BasedListResponse
 import com.example.carcamping.api.response.LocationBasedListResponse
+import com.example.carcamping.api.response.SearchListResponse
 import org.koin.java.KoinJavaComponent.inject
 import retrofit2.Call
 import retrofit2.Callback
@@ -56,24 +57,25 @@ class GoCampingRemoteDataSourceImpl :
 
     override fun getSearchList(
         keyword: String,
-        onSuccess: (SearchListResponse) -> Unit,
+        onSuccess: (searchListResponse: SearchListResponse) -> Unit,
         onFailure: (throwable: Throwable) -> Unit
     ) {
 
-        val toEncodingKeyword = URLEncoder.encode(keyword,"UTF-8")
+        val toEncodingKeyword = URLEncoder.encode(keyword, "UTF-8")
 
-        goCampingApi.getSearchList(toEncodingKeyword).enqueue(object : Callback<SearchListResponse> {
-            override fun onResponse(
-                call: Call<SearchListResponse>,
-                response: Response<SearchListResponse>
-            ) {
-                response.body()?.let(onSuccess)
-            }
+        goCampingApi.getSearchList(toEncodingKeyword)
+            .enqueue(object : Callback<SearchListResponse> {
+                override fun onResponse(
+                    call: Call<SearchListResponse>,
+                    response: Response<SearchListResponse>
+                ) {
+                    response.body()?.let(onSuccess)
+                }
 
-            override fun onFailure(call: Call<SearchListResponse>, t: Throwable) {
-                onFailure(t)
-            }
-        }
+                override fun onFailure(call: Call<SearchListResponse>, t: Throwable) {
+                    onFailure(t)
+                }
+            })
     }
 
     override fun getImageList(

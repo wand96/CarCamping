@@ -2,6 +2,7 @@ package com.example.carcamping.data.repo
 
 import com.example.carcamping.api.response.BasedListResponse
 import com.example.carcamping.api.response.LocationBasedListResponse
+import com.example.carcamping.api.response.SearchListResponse
 
 interface GoCampingRepository {
 
@@ -19,14 +20,14 @@ interface GoCampingRepository {
     )
 
     fun getSearchList(
-        keyword : String,
+        keyword: String,
         onSuccess: (searchListResponse: SearchListResponse) -> Unit,
         onFailure: (throwable: Throwable) -> Unit
     )
 
     fun getImageList(
-        conetentId : String,
-        onSuccess: (imageListResponse: ImageListResponse) -> Unit,
+        contentId: String,
+        onSuccess: (imageListResponse: SearchListResponse) -> Unit,
         onFailure: (throwable: Throwable) -> Unit
     )
 }
