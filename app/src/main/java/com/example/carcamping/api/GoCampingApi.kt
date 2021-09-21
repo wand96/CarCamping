@@ -52,7 +52,7 @@ interface GoCampingApi {
 
     @GET(SEARCH_LIST_URL)
     fun getSearchList(
-        @Query(value = "keyword") keyword: String,
+        @Query(value = "keyword", encoded = true) keyword: String,
         @Query(value = "_type") type: String = TYPE_JSON
     ): Call<SearchListResponse>
 

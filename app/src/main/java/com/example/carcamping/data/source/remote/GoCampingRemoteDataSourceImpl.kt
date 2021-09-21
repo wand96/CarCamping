@@ -1,6 +1,5 @@
 package com.example.carcamping.data.source.remote
 
-import android.util.Log
 import com.example.carcamping.api.GoCampingApi
 import com.example.carcamping.api.response.BasedListResponse
 import com.example.carcamping.api.response.ImageListResponse
@@ -64,8 +63,6 @@ class GoCampingRemoteDataSourceImpl :
     ) {
 
         val toEncodingKeyword = URLEncoder.encode(keyword, "UTF-8")
-
-        Log.d("결과 encoding", toEncodingKeyword)
 
         goCampingApi.getSearchList(toEncodingKeyword)
             .enqueue(object : Callback<SearchListResponse> {
