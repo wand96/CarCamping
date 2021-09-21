@@ -34,4 +34,12 @@ class GoCampingRepositoryImpl :
     ) {
         goCampingRemoteDataSource.getSearchList(keyword, onSuccess, onFailure)
     }
+
+    override fun getImageList(
+        contentId: String,
+        onSuccess: (ImageListResponse) -> Unit,
+        onFailure: (throwable: Throwable) -> Unit
+    ) {
+        goCampingRemoteDataSource.getSearchList(contentId, onSuccess, onFailure)
+    }
 }

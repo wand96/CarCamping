@@ -75,4 +75,24 @@ class GoCampingRemoteDataSourceImpl :
             }
         }
     }
+
+    override fun getImageList(
+        conetentId: String,
+        onSuccess: (ImageListResponse) -> Unit,
+        onFailure: (throwable: Throwable) -> Unit
+    ) {
+        goCampingApi.getImageList(contentId).enqueue(object : Callback<ImageListResponse> {
+            override fun onResponse(
+                call: Call<ImageListResponse>,
+                response: Response<ImageListResponse>
+            ) {
+                response.body()?.let(onSuccess)
+            }
+
+            override fun onFailure(call: Call<ImageListResponse>, t: Throwable) {
+                onFailure(t)
+            }
+        })
+    }
+
 }

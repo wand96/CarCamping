@@ -24,4 +24,9 @@ interface GoCampingRemoteDataSource {
         onFailure: (throwable: Throwable) -> Unit
     )
 
+    fun getImageList(
+        conetentId : String,
+        onSuccess: (imageListResponse: ImageListResponse) -> Unit,
+        onFailure: (throwable: Throwable) -> Unit
+    )
 }

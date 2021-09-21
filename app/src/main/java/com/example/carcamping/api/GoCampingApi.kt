@@ -24,6 +24,11 @@ interface GoCampingApi {
         private const val LOCATION_LIST_URL =
             "locationBasedList?ServiceKey=$GO_CAMPING_KEY&MobileOS=$MOBILE_OS&MobileApp=$MOBILE_APP"
 
+        private const val SEARCHLIST_URL =
+            "searchList?ServiceKey=$GO_CAMPING_KEY&MobileOS=$MOBILE_OS&MobileApp=$MOBILE_APP"
+
+        private const val IMAGELIST_URL =
+            "imageList?ServiceKey=$GO_CAMPING_KEY&MobileOS=$MOBILE_OS&MobileApp=$MOBILE_APP"
         private const val TYPE_JSON = "json"
     }
 
@@ -48,4 +53,10 @@ interface GoCampingApi {
         @Query(value = "_type") type: String = TYPE_JSON
     ) : Call<SearchListResponse>
 
+
+    @GET(IMAGELIST_URL)
+    fun getImageList(
+        @Query(value = "contentId") keyword : String,
+        @Query(value = "_type") type: String = TYPE_JSON
+    ) : Call<ImageListResponse>
 }

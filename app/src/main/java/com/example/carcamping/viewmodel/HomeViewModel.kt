@@ -47,6 +47,10 @@ class HomeViewModel : ViewModel() {
 
     }
 
+    fun getImageList(contentId : String) {
+
+        goCampingRepository.getImageList(contentId, onSuccess = {},onFailure = {})
+    }
 
     sealed class HomeViewState {
         data class GetGoCampingBasedList(val goCampingItem: GoCampingItem) : HomeViewState()
