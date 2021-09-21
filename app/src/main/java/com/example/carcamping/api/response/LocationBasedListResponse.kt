@@ -2,21 +2,22 @@ package com.example.carcamping.api.response
 
 import com.google.gson.annotations.SerializedName
 
-data class BasedListResponse(
+data class LocationBasedListResponse(
     @SerializedName("response")
-    val response: BasedResponse
+    val response: LocationResponse
 )
 
-data class BasedResponse(
+
+data class LocationResponse(
     @SerializedName("body")
-    val body: BasedBody,
+    val body: LocationBody,
     @SerializedName("header")
     val header: Header
 )
 
-data class BasedBody(
+data class LocationBody(
     @SerializedName("items")
-    val basedListItems: BasedListItems,
+    val items: LocationItems,
     @SerializedName("numOfRows")
     val numOfRows: Int,
     @SerializedName("pageNo")
@@ -25,14 +26,14 @@ data class BasedBody(
     val totalCount: Int
 )
 
-data class BasedListItems(
+data class LocationItems(
     @SerializedName("item")
-    val item: List<BasedListItem>
+    val item: List<LocationItem>
 )
 
-
-data class BasedListItem(
+data class LocationItem(
     val addr1: String,
+    val addr2: String,
     val allar: Int,
     val animalCmgCl: String,
     val autoSiteCo: Int,
@@ -44,26 +45,39 @@ data class BasedListItem(
     val contentId: Int,
     val createdtime: String,
     val doNm: String,
+    val eqpmnLendCl: String,
     val exprnProgrmAt: String,
     val extshrCo: Int,
+    val facltDivNm: String,
     val facltNm: String,
+    val featureNm: String,
     val fireSensorCo: Int,
+    val firstImageUrl: String,
     val frprvtSandCo: Int,
     val frprvtWrppCo: Int,
+    val glampInnerFclty: String,
     val glampSiteCo: Int,
     val gnrlSiteCo: Int,
+    val homepage: String,
     val induty: String,
     val indvdlCaravSiteCo: Int,
     val insrncAt: String,
+    val intro: String,
+    val lctCl: String,
+    val lineIntro: String,
     val manageNmpr: Int,
     val manageSttus: String,
     val mangeDivNm: String,
-    val mapX: Any,
-    val mapY: Any,
+    val mapX: Double,
+    val mapY: Double,
     val modifiedtime: String,
     val operDeCl: String,
     val operPdCl: String,
+    val posblFcltyCl: String,
     val prmisnDe: String,
+    val resveCl: String,
+    val resveUrl: String,
+    val sbrsCl: String,
     val sigunguNm: String,
     val siteBottomCl1: Int,
     val siteBottomCl2: Int,
@@ -82,6 +96,7 @@ data class BasedListItem(
     val sitedStnc: Int,
     val swrmCo: Int,
     val tel: String,
+    val themaEnvrnCl: String,
     val toiletCo: Int,
     val trlerAcmpnyAt: String,
     val wtrplCo: Int,

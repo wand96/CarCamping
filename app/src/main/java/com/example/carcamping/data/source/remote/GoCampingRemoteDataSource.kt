@@ -1,7 +1,9 @@
 package com.example.carcamping.data.source.remote
 
 import com.example.carcamping.api.response.BasedListResponse
+import com.example.carcamping.api.response.ImageListResponse
 import com.example.carcamping.api.response.LocationBasedListResponse
+import com.example.carcamping.api.response.SearchListResponse
 
 interface GoCampingRemoteDataSource {
 
@@ -19,9 +21,14 @@ interface GoCampingRemoteDataSource {
     )
 
     fun getSearchList(
-        keyword : String,
+        keyword: String,
         onSuccess: (searchListResponse: SearchListResponse) -> Unit,
         onFailure: (throwable: Throwable) -> Unit
     )
 
+    fun getImageList(
+        contentId: String,
+        onSuccess: (imageListResponse: ImageListResponse) -> Unit,
+        onFailure: (throwable: Throwable) -> Unit
+    )
 }
