@@ -1,23 +1,33 @@
 package com.example.carcamping.api.response
 
+import com.google.gson.annotations.SerializedName
+
 data class LocationBasedListResponse(
+    @SerializedName("response")
     val response: LocationResponse
 )
 
 
 data class LocationResponse(
+    @SerializedName("body")
     val body: LocationBody,
+    @SerializedName("header")
     val header: Header
 )
 
 data class LocationBody(
+    @SerializedName("items")
     val items: LocationItems,
+    @SerializedName("numOfRows")
     val numOfRows: Int,
+    @SerializedName("pageNo")
     val pageNo: Int,
+    @SerializedName("totalCount")
     val totalCount: Int
 )
 
 data class LocationItems(
+    @SerializedName("item")
     val item: List<LocationItem>
 )
 

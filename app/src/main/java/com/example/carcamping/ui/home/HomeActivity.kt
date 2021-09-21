@@ -24,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
 
         initUi()
 
-//        homeViewModel.getGoCampingBasedList()
+        homeViewModel.getGoCampingBasedList()
 
         homeViewModel.getGoCampingLocationList(128.6142847, 36.0345423, 2000)
 

@@ -1,5 +1,6 @@
 package com.example.carcamping.viewmodel
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,25 +17,42 @@ class HomeViewModel : ViewModel() {
     val homeViewStateLiveData: LiveData<HomeViewState> = _homeViewStateLiveData
 
 
+    @SuppressLint("LongLogTag")
     fun getGoCampingBasedList() {
 
         goCampingRepository.getBasedList(
             onSuccess = {
-                Log.d("결과-success", it.response.header.resultCode)
-                Log.d("결과-success", it.response.body.basedListItems.item.size.toString())
+                Log.d("결과-getGoCampingBasedList", it.response.header.resultCode)
+
+                Log.d("결과-getGoCampingBasedList", it.response.body.basedListItems.item[0].sigunguNm)
+                Log.d(
+                    "결과-getGoCampingBasedList",
+                    it.response.body.basedListItems.item[0].mapX.toString()
+                )
+                Log.d(
+                    "결과-getGoCampingBasedList",
+                    it.response.body.basedListItems.item[0].mapY.toString()
+                )
             }, onFailure = {
                 Log.d("결과-failure", it.message!!)
             }
         )
     }
 
+    @SuppressLint("LongLogTag")
     fun getGoCampingLocationList(mapX: Double, mapY: Double, radius: Int) {
         goCampingRepository.getLocationList(mapX, mapY, radius,
             onSuccess = {
-                Log.d("결과성공-code", it.response.header.resultCode)
-                Log.d("결과성공-addr1", it.response.body.items.item[0].addr1)
-                Log.d("결과성공-addr2", it.response.body.items.item[0].addr2 ?: "null")
-                Log.d("결과성공-facltNm", it.response.body.items.item[0].facltNm ?: "")
+                Log.d("결과-getGoCampingLocationList-code", it.response.header.resultCode)
+                Log.d("결과-getGoCampingLocationList-addr1", it.response.body.items.item[0].addr1)
+                Log.d(
+                    "결과-getGoCampingLocationList-addr2",
+                    it.response.body.items.item[0].addr2 ?: "null"
+                )
+                Log.d(
+                    "결과-getGoCampingLocationList-facltNm",
+                    it.response.body.items.item[0].facltNm ?: ""
+                )
             }, onFailure = {
 
             })
@@ -62,6 +80,9 @@ class HomeViewModel : ViewModel() {
                 val urlList =
                     it.imageResponse.body.items.item.map { imageItem -> imageItem.imageUrl }
 
+                urlList.forEach { url ->
+                    Log.d("결과-getImageList", url)
+                }
 
             }, onFailure = {
                 Log.d("결과-getImageList", it.message ?: "")
