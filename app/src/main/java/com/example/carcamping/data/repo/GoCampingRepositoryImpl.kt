@@ -1,6 +1,7 @@
 package com.example.carcamping.data.repo
 
 import com.example.carcamping.api.response.BasedListResponse
+import com.example.carcamping.api.response.ImageListResponse
 import com.example.carcamping.api.response.LocationBasedListResponse
 import com.example.carcamping.api.response.SearchListResponse
 import com.example.carcamping.data.source.remote.GoCampingRemoteDataSource
@@ -40,9 +41,9 @@ class GoCampingRepositoryImpl :
 
     override fun getImageList(
         contentId: String,
-        onSuccess: (ImageListResponse) -> Unit,
+        onSuccess: (imageListResponse: ImageListResponse) -> Unit,
         onFailure: (throwable: Throwable) -> Unit
     ) {
-        goCampingRemoteDataSource.getSearchList(contentId, onSuccess, onFailure)
+        goCampingRemoteDataSource.getImageList(contentId, onSuccess, onFailure)
     }
 }

@@ -1,7 +1,9 @@
 package com.example.carcamping.data.source.remote
 
+import android.util.Log
 import com.example.carcamping.api.GoCampingApi
 import com.example.carcamping.api.response.BasedListResponse
+import com.example.carcamping.api.response.ImageListResponse
 import com.example.carcamping.api.response.LocationBasedListResponse
 import com.example.carcamping.api.response.SearchListResponse
 import org.koin.java.KoinJavaComponent.inject
@@ -63,6 +65,8 @@ class GoCampingRemoteDataSourceImpl :
 
         val toEncodingKeyword = URLEncoder.encode(keyword, "UTF-8")
 
+        Log.d("결과 encoding", toEncodingKeyword)
+
         goCampingApi.getSearchList(toEncodingKeyword)
             .enqueue(object : Callback<SearchListResponse> {
                 override fun onResponse(
@@ -79,8 +83,8 @@ class GoCampingRemoteDataSourceImpl :
     }
 
     override fun getImageList(
-        conetentId: String,
-        onSuccess: (ImageListResponse) -> Unit,
+        contentId: String,
+        onSuccess: (imageListResponse: ImageListResponse) -> Unit,
         onFailure: (throwable: Throwable) -> Unit
     ) {
         goCampingApi.getImageList(contentId).enqueue(object : Callback<ImageListResponse> {

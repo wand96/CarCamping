@@ -41,15 +41,31 @@ class HomeViewModel : ViewModel() {
 
     }
 
-    fun getSearchList(keyword : String) {
+    fun getSearchList(keyword: String) {
 
-        goCampingRepository.getSearchList(keyword,onSuccess = {},onFailure = {})
+        goCampingRepository.getSearchList(keyword,
+            onSuccess = {
+                Log.d("결과-getSearchList", it.response.body.items.item[0].addr1 ?: "")
+                Log.d("결과-getSearchList", it.response.body.items.item[0].tel ?: "")
+                Log.d("결과-getSearchList", it.response.body.items.item[0].animalCmgCl ?: "")
+            }, onFailure = {
+                Log.d("결과-getSearchList", it.message ?: "")
+            })
 
     }
 
-    fun getImageList(contentId : String) {
+    fun getImageList(contentId: String) {
 
-        goCampingRepository.getImageList(contentId, onSuccess = {},onFailure = {})
+        goCampingRepository.getImageList(contentId,
+            onSuccess = {
+
+                val urlList =
+                    it.imageResponse.body.items.item.map { imageItem -> imageItem.imageUrl }
+
+
+            }, onFailure = {
+                Log.d("결과-getImageList", it.message ?: "")
+            })
     }
 
     sealed class HomeViewState {
