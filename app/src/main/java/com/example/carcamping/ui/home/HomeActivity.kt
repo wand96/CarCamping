@@ -34,6 +34,7 @@ class HomeActivity : AppCompatActivity() {
 
         with(binding) {
             viewPager.adapter = pagerAdapter
+            viewPager.offscreenPageLimit = 4
 
             TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                 tab.text = titles[position]
