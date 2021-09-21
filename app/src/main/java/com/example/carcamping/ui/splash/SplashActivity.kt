@@ -17,7 +17,6 @@ class SplashActivity : AppCompatActivity() {
     }
 
 
-
     private fun routeHomeActivity() {
         Handler(Looper.getMainLooper()).postDelayed(
             Runnable {
@@ -29,7 +28,6 @@ class SplashActivity : AppCompatActivity() {
             DELAY_ROUTE_TIME
         )
     }
-
 
     companion object {
         private const val DELAY_ROUTE_TIME = 1500L

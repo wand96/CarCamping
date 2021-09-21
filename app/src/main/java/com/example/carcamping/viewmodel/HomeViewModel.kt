@@ -1,5 +1,6 @@
 package com.example.carcamping.viewmodel
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,18 +17,49 @@ class HomeViewModel : ViewModel() {
     val homeViewStateLiveData: LiveData<HomeViewState> = _homeViewStateLiveData
 
 
+    @SuppressLint("LongLogTag")
     fun getGoCampingBasedList() {
 
         goCampingRepository.getBasedList(
             onSuccess = {
-                Log.d("결과-success", it.response.header.resultCode)
-                Log.d("결과-success", it.response.body.items.item.size.toString())
+
             }, onFailure = {
-                Log.d("결과-failure", it.message!!)
+
             }
         )
     }
 
+
+    fun getGoCampingLocationList(mapX: Double, mapY: Double, radius: Int) {
+        goCampingRepository.getLocationList(mapX, mapY, radius,
+            onSuccess = {
+
+            }, onFailure = {
+
+            })
+
+    }
+
+    fun getSearchList(keyword: String) {
+
+        goCampingRepository.getSearchList(keyword,
+            onSuccess = {
+
+            }, onFailure = {
+            })
+
+    }
+
+    fun getImageList(contentId: String) {
+
+        goCampingRepository.getImageList(contentId,
+            onSuccess = {
+                val urlList =
+                    it.imageResponse.body.items.item.map { imageItem -> imageItem.imageUrl }
+
+            }, onFailure = {
+            })
+    }
 
     sealed class HomeViewState {
         data class GetGoCampingBasedList(val goCampingItem: GoCampingItem) : HomeViewState()
