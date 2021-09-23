@@ -3,7 +3,6 @@ package com.example.carcamping.ui.home
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,20 +40,31 @@ class MapFragment : Fragment() {
     private fun loadMapView() {
         mapView = MapView(context)
 
-        gpsTracker = GpsTracker(requireContext())
 
-        val currentMapPoint = MapPoint.mapPointWithGeoCoord(
-            gpsTracker.getCurrentLatitude(),
-            gpsTracker.getCurrentLongitude()
-        )
+        mapView.setCurrentLocationEventListener(object : MapView.CurrentLocationEventListener {
+            override fun onCurrentLocationUpdate(p0: MapView?, p1: MapPoint?, p2: Float) {
+                p0?.let {
+                    val mapPOIItem = MapPOIItem().apply {
+                        itemName = "CurrentLocation"
+                        mapPoint = p1
+                    }
+                    it.addPOIItem(mapPOIItem)
+                    it.setMapCenterPoint(p1,true)
+                }
+            }
 
-        val mapPOIItem = MapPOIItem().apply {
-            itemName = "CurrentLocation"
-            mapPoint = currentMapPoint
-        }
+            override fun onCurrentLocationDeviceHeadingUpdate(p0: MapView?, p1: Float) {
 
-        mapView.addPOIItem(mapPOIItem)
-        mapView.setMapCenterPoint(currentMapPoint, true)
+            }
+
+            override fun onCurrentLocationUpdateFailed(p0: MapView?) {
+
+            }
+
+            override fun onCurrentLocationUpdateCancelled(p0: MapView?) {
+
+            }
+        })
 
         binding.containerMap.addView(mapView)
     }
