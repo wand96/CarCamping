@@ -41,33 +41,23 @@ class MapFragment : Fragment() {
         mapView = MapView(context)
 
 
-        mapView.setCurrentLocationEventListener(object : MapView.CurrentLocationEventListener {
-            override fun onCurrentLocationUpdate(p0: MapView?, p1: MapPoint?, p2: Float) {
-                p0?.let {
-                    val mapPOIItem = MapPOIItem().apply {
-                        itemName = "CurrentLocation"
-                        mapPoint = p1
-                    }
-                    it.addPOIItem(mapPOIItem)
-                    it.setMapCenterPoint(p1,true)
-                }
-            }
+        val searchMapPoint = MapPoint.mapPointWithGeoCoord(
+            128.6142847,
+            36.0345423
+        )
 
-            override fun onCurrentLocationDeviceHeadingUpdate(p0: MapView?, p1: Float) {
+        val mapPOIItem = MapPOIItem().apply {
+            itemName = "searchItem"
+            mapPoint = searchMapPoint
+        }
 
-            }
-
-            override fun onCurrentLocationUpdateFailed(p0: MapView?) {
-
-            }
-
-            override fun onCurrentLocationUpdateCancelled(p0: MapView?) {
-
-            }
-        })
+        mapView.addPOIItem(mapPOIItem)
+        mapView.setMapCenterPoint(searchMapPoint, true)
 
         binding.containerMap.addView(mapView)
     }
+
+//    mapX=128.6142847&mapY=36.0345423
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
