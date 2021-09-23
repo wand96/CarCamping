@@ -11,6 +11,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.carcamping.databinding.MapFragmentBinding
 import com.example.carcamping.utils.GpsTracker
+import net.daum.mf.map.api.MapPOIItem
+import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
 
 class MapFragment : Fragment() {
@@ -38,10 +40,21 @@ class MapFragment : Fragment() {
 
     private fun loadMapView() {
         mapView = MapView(context)
+
         gpsTracker = GpsTracker(requireContext())
 
-        Log.d("결과", gpsTracker.getCurrentLatitude().toString())
-        Log.d("결과", gpsTracker.getCurrentLongitude().toString())
+        val currentMapPoint = MapPoint.mapPointWithGeoCoord(
+            gpsTracker.getCurrentLatitude(),
+            gpsTracker.getCurrentLongitude()
+        )
+
+        val mapPOIItem = MapPOIItem().apply {
+            itemName = "CurrentLocation"
+            mapPoint = currentMapPoint
+        }
+
+        mapView.addPOIItem(mapPOIItem)
+        mapView.setMapCenterPoint(currentMapPoint, true)
 
         binding.containerMap.addView(mapView)
     }
