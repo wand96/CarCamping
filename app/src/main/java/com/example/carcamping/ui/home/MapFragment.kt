@@ -3,12 +3,14 @@ package com.example.carcamping.ui.home
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.carcamping.databinding.MapFragmentBinding
+import com.example.carcamping.utils.GpsTracker
 import net.daum.mf.map.api.MapView
 
 class MapFragment : Fragment() {
@@ -16,6 +18,8 @@ class MapFragment : Fragment() {
     private lateinit var binding: MapFragmentBinding
 
     private lateinit var mapView: MapView
+
+    private lateinit var gpsTracker: GpsTracker
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +38,11 @@ class MapFragment : Fragment() {
 
     private fun loadMapView() {
         mapView = MapView(context)
+        gpsTracker = GpsTracker(requireContext())
+
+        Log.d("결과", gpsTracker.getCurrentLatitude().toString())
+        Log.d("결과", gpsTracker.getCurrentLongitude().toString())
+
         binding.containerMap.addView(mapView)
     }
 
@@ -59,8 +68,17 @@ class MapFragment : Fragment() {
                 requireActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
+            && ContextCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
         ) {
-            requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 999)
+            requestPermissions(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ), 999
+            )
         } else {
             loadMapView()
         }
