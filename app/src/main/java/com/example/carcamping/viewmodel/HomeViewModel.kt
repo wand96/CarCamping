@@ -30,8 +30,8 @@ class HomeViewModel : ViewModel() {
     }
 
 
-    fun getGoCampingLocationList(mapX: Double, mapY: Double, radius: Int) {
-        goCampingRepository.getLocationList(mapX, mapY, radius,
+    fun getGoCampingLocationList(longitude: Double, latitude: Double, radius: Int) {
+        goCampingRepository.getLocationList(longitude, latitude, radius,
             onSuccess = {
 
             }, onFailure = {
