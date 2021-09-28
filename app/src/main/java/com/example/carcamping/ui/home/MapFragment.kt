@@ -26,7 +26,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class MapFragment : BaseFragment<MapFragmentBinding>(R.layout.map_fragment) {
 
-    private lateinit var mapView: MapView
+    //private lateinit var mapView: MapView
 
     private lateinit var gpsTracker: GpsTracker
 
@@ -61,7 +61,7 @@ class MapFragment : BaseFragment<MapFragmentBinding>(R.layout.map_fragment) {
                     }
 
                     withContext(Dispatchers.Main) {
-                        mapView.addPOIItems(campingItemList.toTypedArray())
+                        binding.containerMap.addPOIItems(campingItemList.toTypedArray())
                     }
                 }
             }
@@ -69,9 +69,6 @@ class MapFragment : BaseFragment<MapFragmentBinding>(R.layout.map_fragment) {
     }
 
     private fun loadMapView() {
-        mapView = MapView(context)
-
-        binding.containerMap.addView(mapView)
 
         gpsTracker = GpsTracker(requireActivity())
 
@@ -87,9 +84,11 @@ class MapFragment : BaseFragment<MapFragmentBinding>(R.layout.map_fragment) {
             mapPoint = currentMapPoint
         }
 
-        mapView.addPOIItem(mapPOIItem)
-        mapView.setZoomLevel(8, true)
-        mapView.setMapCenterPoint(currentMapPoint, true)
+        with(binding.containerMap) {
+            addPOIItem(mapPOIItem)
+            setZoomLevel(8, false)
+            setMapCenterPoint(currentMapPoint, false)
+        }
 
     }
 

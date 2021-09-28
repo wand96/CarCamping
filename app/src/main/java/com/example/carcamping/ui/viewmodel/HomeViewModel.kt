@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.carcamping.api.response.LocationItem
 import com.example.carcamping.base.BaseViewModel
+import com.example.carcamping.base.ViewState
 import com.example.carcamping.ui.data.model.GoCampingItem
 import com.example.carcamping.ui.data.repo.GoCampingRepository
 import org.koin.java.KoinJavaComponent.inject
@@ -53,7 +54,7 @@ class HomeViewModel(app: Application) : BaseViewModel(app) {
             })
     }
 
-    sealed class HomeViewState {
+    sealed class HomeViewState : ViewState {
         data class GetGoCampingBasedList(val goCampingItem: GoCampingItem) : HomeViewState()
         data class GetGoCampingLocationList(val itemList: List<LocationItem>) : HomeViewState()
         object ErrorGetGoCampingBasedList : HomeViewState()
