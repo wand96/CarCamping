@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.carcamping.api.response.LocationItem
 import com.example.carcamping.data.model.GoCampingItem
 import com.example.carcamping.data.repo.GoCampingRepository
 import org.koin.java.KoinJavaComponent.inject
@@ -33,9 +34,10 @@ class HomeViewModel : ViewModel() {
     fun getGoCampingLocationList(longitude: Double, latitude: Double, radius: Int) {
         goCampingRepository.getLocationList(longitude, latitude, radius,
             onSuccess = {
-
+                _homeViewStateLiveData.value =
+                    HomeViewState.GetGoCampingLocationList(it.response.body.items.item)
             }, onFailure = {
-
+                Log.d("결과 error", it.message.toString())
             })
 
     }
@@ -51,18 +53,18 @@ class HomeViewModel : ViewModel() {
     }
 
     fun getImageList(contentId: String) {
-
         goCampingRepository.getImageList(contentId,
-            onSuccess = {
-                val urlList =
-                    it.imageResponse.body.items.item.map { imageItem -> imageItem.imageUrl }
+        onSuccess = {
+            val urlList =
+                it.imageResponse.body.items.item.map {imageItem -> imageItem.imageUrl }
+        }, onFailure = {
 
-            }, onFailure = {
             })
     }
 
     sealed class HomeViewState {
         data class GetGoCampingBasedList(val goCampingItem: GoCampingItem) : HomeViewState()
+        data class GetGoCampingLocationList(val itemList: List<LocationItem>) : HomeViewState()
         object ErrorGetGoCampingBasedList : HomeViewState()
     }
 
