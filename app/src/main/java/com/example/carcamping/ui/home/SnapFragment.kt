@@ -6,14 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.carcamping.R
+import com.example.carcamping.base.BaseFragment
+import com.example.carcamping.databinding.SnapFragmentBinding
 
-class SnapFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.snap_fragment, container, false)
-    }
-
-}
+class SnapFragment : BaseFragment<SnapFragmentBinding>(R.layout.snap_fragment)

@@ -6,14 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.carcamping.R
+import com.example.carcamping.base.BaseFragment
+import com.example.carcamping.databinding.BookmarkFragmentBinding
 
-class BookMarkFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.bookmark_fragment, container, false)
-    }
-
-}
+class BookMarkFragment : BaseFragment<BookmarkFragmentBinding>(R.layout.bookmark_fragment)

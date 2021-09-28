@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.carcamping.R
+import com.example.carcamping.base.BaseFragment
 import com.example.carcamping.databinding.MapFragmentBinding
 import com.example.carcamping.utils.GpsTracker
 import com.example.carcamping.viewmodel.HomeViewModel
@@ -21,24 +23,15 @@ import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class MapFragment : Fragment() {
-
-    private lateinit var binding: MapFragmentBinding
+class MapFragment : BaseFragment<MapFragmentBinding>(R.layout.map_fragment) {
 
     private lateinit var mapView: MapView
 
     private lateinit var gpsTracker: GpsTracker
 
-    private val homeViewModel by sharedViewModel<HomeViewModel>()
+    private val campingItemList = mutableSetOf<MapPOIItem>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = MapFragmentBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    private val homeViewModel by sharedViewModel<HomeViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -52,14 +45,11 @@ class MapFragment : Fragment() {
         }
     }
 
-    private val campingItemList = mutableSetOf<MapPOIItem>()
-
     private fun onChangedHomeViewState(homeViewState: HomeViewModel.HomeViewState) {
         when (homeViewState) {
             is HomeViewModel.HomeViewState.GetGoCampingLocationList -> {
                 GlobalScope.launch(Dispatchers.IO) {
                     homeViewState.itemList.forEach { item ->
-                        Log.d("결과 - oCHVS", item.facltNm)
                         val mapPOIItem = MapPOIItem().apply {
                             itemName = item.facltNm
                             mapPoint = MapPoint.mapPointWithGeoCoord(item.mapY, item.mapX)
@@ -96,7 +86,7 @@ class MapFragment : Fragment() {
         }
 
         mapView.addPOIItem(mapPOIItem)
-        mapView.setMapCenterPoint(currentMapPoint, true)
+        mapView.setZoomLevel(8, true)
         mapView.setMapCenterPoint(currentMapPoint, true)
 
     }
