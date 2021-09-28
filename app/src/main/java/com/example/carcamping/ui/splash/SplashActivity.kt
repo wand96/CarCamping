@@ -6,12 +6,13 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.example.carcamping.R
+import com.example.carcamping.base.BaseActivity
+import com.example.carcamping.databinding.ActivitySplashBinding
 import com.example.carcamping.ui.home.HomeActivity
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity<ActivitySplashBinding>(R.layout.activity_splash) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
 
         routeHomeActivity()
     }

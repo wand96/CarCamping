@@ -5,22 +5,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.carcamping.R
+import com.example.carcamping.base.BaseActivity
 import com.example.carcamping.databinding.ActivityHomeBinding
 import com.example.carcamping.viewmodel.HomeViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class HomeActivity : AppCompatActivity() {
-    private val binding by lazy { ActivityHomeBinding.inflate(layoutInflater) }
-
+class HomeActivity : BaseActivity<ActivityHomeBinding>(R.layout.activity_home) {
 
     private val homeViewModel by viewModel<HomeViewModel>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
 
         initUi()
 
