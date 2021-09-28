@@ -6,6 +6,7 @@ import com.example.carcamping.data.repo.GoCampingRepositoryImpl
 import com.example.carcamping.data.source.remote.GoCampingRemoteDataSource
 import com.example.carcamping.data.source.remote.GoCampingRemoteDataSourceImpl
 import com.example.carcamping.viewmodel.HomeViewModel
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -21,7 +22,7 @@ class AppKoinSetup : KoinBaseKoinSetup() {
     }
 
     private val viewModelModule = module {
-        viewModel { HomeViewModel() }
+        viewModel { HomeViewModel(androidApplication()) }
     }
 
     private val repositoryModule = module {

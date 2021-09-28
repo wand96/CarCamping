@@ -1,33 +1,61 @@
 package com.example.carcamping.ui.viewmodel
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.carcamping.api.response.LocationItem
+import com.example.carcamping.base.BaseViewModel
 import com.example.carcamping.ui.data.model.GoCampingItem
 import com.example.carcamping.ui.data.repo.GoCampingRepository
+import org.koin.java.KoinJavaComponent.inject
 
-class HomeViewModel(private val goCampingRepository: GoCampingRepository) : ViewModel() {
+class HomeViewModel(app: Application) : BaseViewModel(app) {
 
-    private val _homeViewStateLiveData = MutableLiveData<HomeViewState>()
-    val homeViewStateLiveData: LiveData<HomeViewState> = _homeViewStateLiveData
-
+   private val goCampingRepository by inject<GoCampingRepository>(GoCampingRepository::class.java)
 
     fun getGoCampingBasedList() {
 
         goCampingRepository.getBasedList(
             onSuccess = {
-                Log.d("결과-success", it.response.header.resultCode)
-                Log.d("결과-success", it.response.body.items.item.size.toString())
+
             }, onFailure = {
-                Log.d("결과-failure", it.message!!)
+
             }
         )
     }
 
+    fun getGoCampingLocationList(longitude: Double, latitude:Double, radius: Int) {
+        goCampingRepository.getLocationList(longitude, latitude, radius,
+            onSuccess = {
+                viewStateChanged(HomeViewState.GetGoCampingLocationList(it.response.body.items.item))
+            }, onFailure = {
+                Log.d("결과 error", it.message.toString())
+            })
+    }
+
+    fun getSearchList(keyword: String) {
+
+        goCampingRepository.getSearchList(keyword,
+            onSuccess = {
+
+            }, onFailure = {
+
+            })
+    }
+
+    fun getImageList(contentId: String) {
+        goCampingRepository.getImageList(contentId,
+            onSuccess = {
+                val urlList =
+                    it.imageResponse.body.items.item.map { imageItem -> imageItem.imageUrl}
+            })
+    }
 
     sealed class HomeViewState {
         data class GetGoCampingBasedList(val goCampingItem: GoCampingItem) : HomeViewState()
+        data class GetGoCampingLocationList(val itemList: List<LocationItem>) : HomeViewState()
         object ErrorGetGoCampingBasedList : HomeViewState()
     }
 

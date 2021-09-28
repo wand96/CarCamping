@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.motion.utils.ViewState
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.carcamping.R
@@ -40,16 +41,17 @@ class MapFragment : BaseFragment<MapFragmentBinding>(R.layout.map_fragment) {
     }
 
     private fun initViewModel() {
-        homeViewModel.homeViewStateLiveData.observe(requireActivity()){
-            onChangedHomeViewState(it)
+
+        homeViewModel.viewStateLiveData.observe(requireActivity()){ viewState ->
+            (viewState as? HomeViewModel.HomeViewState)?.let { onChangedHomeViewState(it)}
         }
     }
 
-    private fun onChangedHomeViewState(homeViewState: HomeViewModel.HomeViewState) {
-        when (homeViewState) {
+    private fun onChangedHomeViewState(viewState: ViewState) {
+        when (viewState) {
             is HomeViewModel.HomeViewState.GetGoCampingLocationList -> {
                 GlobalScope.launch(Dispatchers.IO) {
-                    homeViewState.itemList.forEach { item ->
+                    viewState.itemList.forEach { item ->
                         val mapPOIItem = MapPOIItem().apply {
                             itemName = item.facltNm
                             mapPoint = MapPoint.mapPointWithGeoCoord(item.mapY, item.mapX)
